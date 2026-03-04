@@ -1,0 +1,143 @@
+---
+import { getEntry, getCollection, render } from 'astro:content';
+import { slugify } from '../../utils/slugify';
+import Layout from '../../layouts/Layout.astro';
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/404');
+
+const post = await getEntry('blog', slug);
+if (!post) return Astro.redirect('/404');
+
+
+const { Content } = await render(post);
+
+// Schema.org JSON-LD
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": post.data.title,
+  "image": [
+    post.data.heroImage || `https://webtec.agency/og/${post.id}.png`
+  ],
+  "datePublished": post.data.pubDate.toISOString(),
+  "dateModified": post.data.pubDate.toISOString(),
+  "author": [{
+      "@type": "Person",
+      "name": post.data.author || "Webtec Editor",
+      "url": `https://webtec.agency/author/${slugify(post.data.author || "Webtec Editor")}`
+  }]
+
+};
+
+// Fetch Related Posts
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .filter(p => p.id !== post.id)
+  .slice(0, 3);
+
+---
+
+<Layout title={post.data.title}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+	<main class="min-h-screen bg-gray-950 pb-20 pt-32">
+		<!-- Article Header -->
+		<header class="max-w-3xl mx-auto px-6 mb-12 text-center">
+			
+			<div class="flex items-center justify-center gap-2 mb-6">
+				<span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold uppercase tracking-wider border border-blue-500/20">
+					Tech News
+				</span>
+				<time datetime={post.data.pubDate.toISOString()} class="text-gray-500 text-sm">
+					{post.data.pubDate.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
+				</time>
+			</div>
+
+			<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 tracking-tight leading-tight">
+				{post.data.title}
+			</h1>
+
+			<!-- Author Section -->
+			<!-- Author Section -->
+			<a href={`/author/${slugify(post.data.author || 'Webtec Editor')}`} class="inline-flex items-center justify-center gap-4 group transition-opacity hover:opacity-80">
+				<div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-blue-500/20 ring-2 ring-transparent group-hover:ring-blue-500/50 transition-all">
+					{post.data.author ? post.data.author.charAt(0) : 'W'}
+				</div>
+				<div class="text-left">
+					<div class="text-white font-medium text-sm">
+						{post.data.author || 'Webtec Editor'}
+					</div>
+					<div class="text-blue-400 text-xs">
+						Read Profile &rarr;
+					</div>
+				</div>
+			</a>
+		</header>
+
+		<!-- Hero Image -->
+		{post.data.heroImage && (
+			<div class="max-w-5xl mx-auto px-6 mb-16">
+				<img 
+					src={post.data.heroImage} 
+					alt={post.data.title}
+					class="w-full aspect-video object-cover rounded-2xl border border-white/10 shadow-2xl bg-gray-900" 
+				/>
+			</div>
+		)}
+
+		<!-- Content -->
+		<article class="max-w-3xl mx-auto px-6">
+			<div class="prose prose-lg prose-invert prose-blue max-w-none 
+				prose-h1:font-bold prose-h1:tracking-tight prose-h1:text-white
+				prose-h2:font-semibold prose-h2:text-white prose-h2:mt-12 prose-h2:mb-6 
+				prose-p:text-gray-300 prose-p:leading-relaxed 
+				prose-strong:text-white prose-strong:font-semibold
+				prose-a:text-blue-400 prose-a:no-underline hover:prose-a:text-blue-300 hover:prose-a:underline
+				prose-blockquote:border-l-blue-500 prose-blockquote:bg-white/5 prose-blockquote:px-6 prose-blockquote:py-2 prose-blockquote:rounded-r-lg prose-blockquote:not-italic
+				prose-code:text-blue-200 prose-code:bg-blue-900/30 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:before:content-none prose-code:after:content-none
+				prose-pre:bg-gray-900 prose-pre:border prose-pre:border-white/10 prose-pre:rounded-xl">
+				<Content />
+			</div>
+		</article>
+
+		<!-- Related Posts -->
+		<section class="max-w-7xl mx-auto px-6 mt-20 pt-20 border-t border-white/5">
+			<h3 class="text-2xl font-bold text-white mb-8">Read Next</h3>
+			<div class="grid md:grid-cols-3 gap-8">
+				{relatedPosts.map(relatedPost => (
+					<a href={`/blog/${relatedPost.id}`} class="group space-y-4 block">
+						<div class="aspect-video rounded-xl bg-gray-900 border border-white/10 group-hover:border-blue-500/30 overflow-hidden transition-all relative">
+							{relatedPost.data.heroImage ? (
+								<img 
+									src={relatedPost.data.heroImage} 
+									alt={relatedPost.data.title} 
+									class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+								/>
+							) : (
+								<div class="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900"></div>
+							)}
+						</div>
+						<div class="space-y-2">
+							<h4 class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors leading-snug">
+								{relatedPost.data.title}
+							</h4>
+							<p class="text-sm text-gray-400 line-clamp-2">
+								{relatedPost.data.description}
+							</p>
+						</div>
+					</a>
+				))}
+			</div>
+		</section>
+
+		<!-- Back Button -->
+		<div class="max-w-3xl mx-auto px-6 mt-12 mb-20 text-center">
+			<a href="/blog" class="inline-flex items-center text-gray-400 hover:text-white transition-colors gap-2">
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path></svg>
+				Back to All News
+			</a>
+		</div>
+
+	</main>
+</Layout>
