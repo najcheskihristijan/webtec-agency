@@ -1,6 +1,6 @@
 ---
 title: "Best Ergonomic Keyboards for Programmers with Wrist Pain in 2026"
-description: "Carpal tunnel ruining your coding career? These split, tented keyboards can save your wrists. We tested 5 models for long-term comfort."
+description: ""
 pubDate: 2026-03-10
 author: "Christian Webtec"
 heroImage: "https://images.unsplash.com/photo-1587829741301-3a871fe49e39?auto=format&fit=crop&w=1200&q=80"
@@ -91,3 +91,5 @@ If you're experiencing wrist pain, **stop using a traditional keyboard today**. 
 Your wrists are worth the investment.
 
 For more productivity tips, see our [Vertical Mouse Guide](/blog/vertical-mouse-guide).
+
+Check out our [Standing Desk Review](/blog/standing-desk-review-2026) and [Monitor Arm Guide](/blog/best-monitor-arms) for the complete setup.

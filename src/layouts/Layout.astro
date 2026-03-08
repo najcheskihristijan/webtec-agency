@@ -12,18 +12,19 @@ const { title, description = "Webtec Agency" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<!-- Google Fonts: Inter as a premium basic font -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+		<meta name="robots" content="noindex, nofollow" />
+		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=block" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=block" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=block" rel="stylesheet">
 		<title>{title}</title>
+		<link rel="canonical" href="https://webtec.agency" />
 		<slot name="head" />
 	</head>
 	<body class="bg-gray-950 text-white font-sans antialiased selection:bg-blue-500/30">

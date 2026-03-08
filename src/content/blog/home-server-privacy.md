@@ -3,7 +3,7 @@ title: "Simple Guide: Setting up a Home Server for Privacy in 2026"
 description: "Stop trusting the cloud with your personal data. Here is the easiest way to set up a private home server using a Raspberry Pi or Mini PC in 2026."
 pubDate: 2026-02-05
 author: "Christian Webtec"
-heroImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+heroImage: "https://images.unsplash.com/photo-BROKEN-IMAGE-ID?auto=format&fit=crop&w=1200&q=80"
 ---
 
 We live in an era where "the cloud" is just a marketing term for "someone else's computer." And often, that someone else is scanning your photos for ads or training AI models on your personal documents.

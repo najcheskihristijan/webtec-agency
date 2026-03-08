@@ -3,7 +3,7 @@ title: "The Future of Battery Tech: Solid State Updates 2026"
 description: "Solid-state batteries promise 2x the range and 10-minute charging. Here's where the technology actually stands in 2026."
 pubDate: 2026-04-20
 author: "Christian Webtec"
-heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80"
+heroImage: "http://images.unsplash.com/photo-1518770660439-4636190af475"
 ---
 
 For 10 years, we've been promised "revolutionary" solid-state batteries. In 2026, they're finally real—but not in the way you think.

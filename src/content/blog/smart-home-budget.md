@@ -1,5 +1,5 @@
 ---
-title: "Smart Home on a Budget: Energy Efficiency for Under $100 in 2026"
+title: "Smart Home Budget Smart Home Cheap Smart Home Affordable Smart Home Energy Efficiency Smart Home 2026"
 description: "You don't need a $5,000 smart home to save money. These three devices cost less than $100 total and can cut your energy bill by 20%."
 pubDate: 2026-03-15
 author: "Christian Webtec"
@@ -10,9 +10,9 @@ Smart homes are marketed as luxury tech. But the real value isn't convenience—
 
 Here's how to build an energy-efficient smart home for less than the cost of one month's electric bill.
 
-## The $100 Smart Home Starter Kit
+#### The $100 Smart Home Starter Kit
 
-### 1. Smart Plugs with Energy Monitoring ($40)
+###### 1. Smart Plugs with Energy Monitoring ($40)
 **Buy:** TP-Link Kasa KP125M (4-pack)
 
 These plugs turn any "dumb" appliance into a smart one. More importantly, they show you exactly how much power each device is using.

@@ -6,7 +6,7 @@ import node from '@astrojs/node';
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://webtec.agency',
+    site: 'https://webtecagency-seotest.store',
     trailingSlash: 'never',
     build: {
         format: 'file'
@@ -15,7 +15,7 @@ export default defineConfig({
     adapter: node({
         mode: 'standalone'
     }),
-    integrations: [sitemap()],
+    integrations: [],
     vite: {
         plugins: [tailwindcss()]
     },

@@ -3,7 +3,7 @@ title: "Review: Can Solar Power Banks Actually Charge a Laptop in 2026?"
 description: "We tested the top solar power banks from Anker, UGREEN, and Goal Zero to see if they can keep your MacBook running off-grid."
 pubDate: 2026-02-15
 author: "Christian Webtec"
-heroImage: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80"
+heroImage: "http://images.unsplash.com/photo-1509391366360-2e959784a276"
 ---
 
 The dream is simple: sit on a beach in Bali, working on your laptop, powered entirely by the sun.

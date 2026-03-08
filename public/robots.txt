@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /blog/
 
-Sitemap: https://webtec.agency/sitemap-index.xml
+User-agent: Googlebot
+Disallow: /author/
+
+Sitemap: https://webtec.agency/sitemap.xml

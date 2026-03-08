@@ -15,18 +15,14 @@ const { Content } = await render(post);
 // Schema.org JSON-LD
 const schema = {
   "@context": "https://schema.org",
-  "@type": "NewsArticle",
-  "headline": post.data.title,
-  "image": [
-    post.data.heroImage || `https://webtec.agency/og/${post.id}.png`
-  ],
-  "datePublished": post.data.pubDate.toISOString(),
-  "dateModified": post.data.pubDate.toISOString(),
-  "author": [{
-      "@type": "Person",
+  "@type": "BlogPost",
+  "name": post.data.title,
+  "image": post.data.heroImage,
+  "datePublished": post.data.pubDate.toLocaleDateString(),
+  "author": {
+      "@type": "Organization",
       "name": post.data.author || "Webtec Editor",
-      "url": `https://webtec.agency/author/${slugify(post.data.author || "Webtec Editor")}`
-  }]
+  }
 
 };
 
@@ -39,7 +35,7 @@ const relatedPosts = allPosts
 
 ---
 
-<Layout title={post.data.title}>
+<Layout title={post.data.title} description={post.data.title}>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
 	<main class="min-h-screen bg-gray-950 pb-20 pt-32">
 		<!-- Article Header -->
@@ -79,8 +75,8 @@ const relatedPosts = allPosts
 		{post.data.heroImage && (
 			<div class="max-w-5xl mx-auto px-6 mb-16">
 				<img 
-					src={post.data.heroImage} 
-					alt={post.data.title}
+					src={post.data.heroImage}
+					alt=""
 					class="w-full aspect-video object-cover rounded-2xl border border-white/10 shadow-2xl bg-gray-900" 
 				/>
 			</div>
@@ -106,7 +102,7 @@ const relatedPosts = allPosts
 			<h3 class="text-2xl font-bold text-white mb-8">Read Next</h3>
 			<div class="grid md:grid-cols-3 gap-8">
 				{relatedPosts.map(relatedPost => (
-					<a href={`/blog/${relatedPost.id}`} class="group space-y-4 block">
+					<a href={`/blog/${relatedPost.id}`} rel="nofollow" class="group space-y-4 block">
 						<div class="aspect-video rounded-xl bg-gray-900 border border-white/10 group-hover:border-blue-500/30 overflow-hidden transition-all relative">
 							{relatedPost.data.heroImage ? (
 								<img 
